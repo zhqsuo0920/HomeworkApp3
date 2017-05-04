@@ -1,0 +1,63 @@
+﻿@model HomeworkApp.Models.UserModel
+
+<script type="text/javascript">
+    var ButtonKeys = { "EnterKey": 13 };
+       $(function () {
+           $("#createUser").keypress(function (e) {
+               var notSaveButtonHasFocus = (e.target.name == "button" && e.target.value != "Save");
+               if (e.which == ButtonKeys.EnterKey && !notSaveButtonHasFocus) {
+                   var defaultButtonId = $(this).attr("defaultbutton");
+                   $("#" + defaultButtonId).click();
+                   return false;
+               }
+           });
+       });
+</script>
+
+@using (Html.BeginForm("Create", "User", FormMethod.Post, new { id = "createUser", defaultbutton = "saveUser" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserID, htmlAttributes: new { @class = "control-label control-label-dialog col-md-2 required" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserID, new { htmlAttributes = new { @id = "txt-userid", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label control-label-dialog col-md-2 required" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @id = "txt-fname", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label control-label-dialog col-md-2 required" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @id = "txt-lname", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmailAddress, htmlAttributes: new { @class = "control-label control-label-dialog col-md-2 required" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @id = "txt-email", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button value="Cancel" class="btn" name="button">Cancel</button>
+                <button value="Reset" class="btn" name="button" onclick="return resetUserFields()">Reset</button>
+                <button value="Save" class="btn btn-default" name="button" id="saveUser">Save</button>
+            </div>
+        </div>
+    </div>
+}
+

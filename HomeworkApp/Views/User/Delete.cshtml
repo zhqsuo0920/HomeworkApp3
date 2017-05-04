@@ -1,0 +1,27 @@
+﻿@model HomeworkApp.ViewModels.UserViewModel
+<script type="text/javascript">
+    var ButtonKeys = { "EnterKey": 13 };
+       $(function () {
+           $("#deleteUser").keypress(function (e) {
+               var notDeleteButtonHasFocus = (e.target.name == "button" && e.target.value != "Delete");
+               if (e.which == ButtonKeys.EnterKey && !notDeleteButtonHasFocus) {
+                   var defaultButtonId = $(this).attr("defaultbutton");
+                   $("#" + defaultButtonId).click();
+                   return false;
+               }
+           });
+       });
+</script>
+
+<h3>Do you really want to delete this user : @Html.DisplayFor(model => model.UserID)?</h3>
+<br />
+<div>
+    @using (Html.BeginForm("Delete", "User", new { userId = @Html.DisplayFor(model => model.UserID) }, FormMethod.Post, new { id = "createUser", defaultbutton = "deleteUser" })) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <button value="Cancel" class="btn" name="button">Cancel</button>
+            <button value="Delete" class="btn btn-default" name="button" id="deleteUser">Delete</button>
+        </div>
+    }
+</div>

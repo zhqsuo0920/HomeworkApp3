@@ -1,0 +1,81 @@
+﻿@model IEnumerable<HomeworkApp.ViewModels.UserListViewModel>
+
+@{
+    ViewBag.Title = "Homework";
+}
+
+<h2 style="text-align: center">User Administration</h2>
+
+@using (Html.BeginRouteForm(null, FormMethod.Get))
+{
+    <span>
+        @Html.TextBox("search")
+        <input type="submit" value="Filter" class="btn" style="font-weight:bold" />
+    </span>
+    <span class="open-dialog">
+        @Html.ActionLink("Create User", "Create", "User", null, new { @id = "openDialog" })
+    </span>
+}
+<br />
+<table class="table">
+    <tr>
+        <th style="font-size:large">
+            @Html.ActionLink(
+            Html.DisplayNameFor(model => model.Name).ToString(),
+            "Index",
+            new
+            {
+                search = Request.QueryString["search"],
+                sort = ViewBag.UserNameSortParameter
+            })
+        </th>
+        <th style="font-size:large">
+            @Html.ActionLink(
+            Html.DisplayNameFor(model => model.EmailAddress).ToString(),
+            "Index",
+            new
+            {
+                search = Request.QueryString["search"],
+                sort = ViewBag.EmailAddressSortParameter
+            })
+        </th>
+        <th style="font-size:large">
+            @Html.ActionLink(
+            Html.DisplayNameFor(model => model.JoinedDate).ToString(),
+            "Index",
+            new
+            {
+                search = Request.QueryString["search"],
+                sort = ViewBag.JoinedDateSortParameter
+            })
+        </th>
+        <th>
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <div>@Html.DisplayFor(modelItem => item.Name)</div>
+            <div>@Html.DisplayFor(modelItem => item.UserID)</div>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JoinedDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", "user", new { userID = item.UserID }, new { @class = "openEditDialog" })
+            |
+            @Html.ActionLink("Delete", "Delete", new { userID = item.UserID }, new { @class = "openDeleteDialog" })
+        </td>
+    </tr>
+}
+
+</table>
+
+<!-- place holders for CRUD dialog -->
+<div id="dialog-create"></div>
+<div id="dialog-edit"></div>
+<div id="dialog-delete"></div>

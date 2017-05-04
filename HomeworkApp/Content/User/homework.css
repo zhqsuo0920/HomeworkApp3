@@ -1,0 +1,55 @@
+﻿.required:after {
+     content:" *"; 
+     color:red;
+}
+
+.table th {
+    background: tan;
+}
+
+.table tr:nth-child(odd) {
+    background-color:#c6bbbb;
+}
+
+.table tr:nth-child(even) {
+    background-color:#fad8d8
+}
+
+.open-dialog {
+    float: right;
+    font: bold; 
+    font-size:large;
+}
+
+.ui-dialog .ui-dialog-content {
+    border: 0;
+    padding: .5em 1em;
+    background:#8a8080;
+    overflow: auto;
+    zoom: 1;
+}
+
+.ui-widget-header {
+    background: #ef8613;
+    border: 0;
+    color: #fff;
+    font-size:xx-large;
+    font-weight: normal;
+    text-align:center;
+}
+
+.control-label {
+    width:120px;
+}
+
+.control-label-dialog {
+    text-align: left !important;
+}
+
+.control-label-dialog {
+    font-size:small;
+}
+.btn:hover,
+.btn:focus {
+  background-color: aqua;
+}
