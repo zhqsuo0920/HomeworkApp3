@@ -1,4 +1,5 @@
-﻿function validateUserID() {
+﻿// validations
+function validateUserID() {
     var txtUserID = document.getElementById('txt-userid');
     if (txtUserID && txtUserID.value == "") {
         return 'UserID field is required';
