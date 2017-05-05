@@ -85,6 +85,7 @@ function resetUserFields() {
 
     return false;
 }
+
 function restoreUserFields() {
 
     document.getElementById('txt-fname').value = document.getElementById('original-fname').value;

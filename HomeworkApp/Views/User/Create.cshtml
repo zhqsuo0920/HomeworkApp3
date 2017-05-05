@@ -5,16 +5,16 @@
        $(function () {
            $("#createUser").keypress(function (e) {
                var notSaveButtonHasFocus = (e.target.name == "button" && e.target.value != "Save");
+               debugger;
                if (e.which == ButtonKeys.EnterKey && !notSaveButtonHasFocus) {
-                   var defaultButtonId = $(this).attr("defaultbutton");
-                   $("#" + defaultButtonId).click();
+                   $("#saveUser").click();
                    return false;
                }
            });
        });
 </script>
 
-@using (Html.BeginForm("Create", "User", FormMethod.Post, new { id = "createUser", defaultbutton = "saveUser" }))
+@using (Html.BeginForm("Create", "User", FormMethod.Post, new { id = "createUser" }))
     {
     @Html.AntiForgeryToken()
 
@@ -55,7 +55,7 @@
             <div class="col-md-offset-2 col-md-10">
                 <button value="Cancel" class="btn" name="button">Cancel</button>
                 <button value="Reset" class="btn" name="button" onclick="return resetUserFields()">Reset</button>
-                <button value="Save" class="btn btn-default" name="button" id="saveUser">Save</button>
+                <button value="Save" class="btn btn-default" name="button" id="saveUser" onclick="return isValidUser('create')">Save</button>
             </div>
         </div>
     </div>
