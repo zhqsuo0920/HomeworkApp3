@@ -22,13 +22,14 @@ namespace HomeworkApp.Controllers.Api
         {
             using (var ctx = new HomeworkEntities())
             {
-                var users = ctx.Users.Select(s => new UserListModel()
+                var users = ctx.Users.Select(s => new UserModel()
                 {
                     UserID = s.UserID,
-                    Name = s.FirstName + " " + s.LastName,
+                    FirstName = s.FirstName,
+                    LastName = s.LastName,
                     EmailAddress = s.EmailAddress,
                     JoinedDate = s.JoinedDate
-                }).ToList<UserListModel>();
+                }).ToList<UserModel>();
 
                 if (users.Count == 0)
                 {

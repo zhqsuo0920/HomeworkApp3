@@ -56,16 +56,16 @@ namespace HomeworkApp.Controllers
         [HttpPost]
         public ActionResult Create(UserViewModel user, string button)
         {
+            if (string.Compare(button, "Cancel", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                return RedirectToAction("Index");
+            }
+
             if (!ModelState.IsValid)
             {
                 return PartialView();
             }
 
-            if (string.Compare(button, "Cancel", StringComparison.OrdinalIgnoreCase) == 0)
-            {
-                return RedirectToAction("Index");
-            }
-             
             using (var client = new HttpClient())
             {
                 //add date

@@ -6,8 +6,7 @@
         $("#editUser").keypress(function (e) {
             var notSaveButtonHasFocus = (e.target.name == "button" && e.target.value != "Update");
             if (e.which == ButtonKeys.EnterKey && !notSaveButtonHasFocus) {
-                var defaultButtonId = $(this).attr("defaultbutton");
-                $("#" + defaultButtonId).click();
+                $("#updateUser").click();
                 return false;
             }
         });
@@ -15,7 +14,7 @@
 </script>
 
 
-@using (Html.BeginForm("Edit", "User", FormMethod.Post, new { id = "editUser", defaultbutton = "updateUser" }))
+@using (Html.BeginForm("Edit", "User", FormMethod.Post, new { id = "editUser" }))
 {
     @Html.AntiForgeryToken()
 
